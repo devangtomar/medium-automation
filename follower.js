@@ -11,3 +11,16 @@ const client = new medium.MediumClient({
   clientSecret: "YOUR_CLIENT_SECRET",
 });
 
+client.setAccessToken(ACCESS_TOKEN);
+
+(async () => {
+  for (const userId of userIdsToFollow) {
+    try {
+      // Follow the user
+      await client.followUser(userId);
+      console.log(`Successfully followed user: ${userId}`);
+    } catch (error) {
+      console.error(`Error following user ${userId}: ${error.message}`);
+    }
+  }
+})();
